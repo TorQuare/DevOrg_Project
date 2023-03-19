@@ -1,0 +1,30 @@
+{% extends 'expand/add_device_base.html' %}
+
+{% block title %}Add device view{% endblock %}
+
+{% block content %}
+    <div>
+        <form>
+            {% csrf_token %}
+            {% for fields in fields_name %}
+                {% if fields == date_field %}
+                    <p><h3>{{fields}}   <input type="date"></h3></p>
+                {% elif fields == type_option_field %}
+                    <p><h3>{{fields}}
+                        <select>
+                            {% for type in device_type %}
+                                {% if type.visible %}
+                                    <option>{{ type.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    <input type="button">
+                    </h3></p>
+                {% else %}
+                    <p><h3>{{fields}}   <input></h3></p>
+                {% endif %}
+            {% endfor %}
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}

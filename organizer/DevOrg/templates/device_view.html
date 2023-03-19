@@ -1,0 +1,26 @@
+{% extends 'main_view.html' %}
+
+{% block title %}Device view{% endblock %}
+
+{% block content %}
+  <div>
+      {% if device_table %}
+          {% for device in device_table %}
+          <form>
+              {% csrf_token %}
+              <div>
+                  <p><h2>{{ device.device_name }}</h2></p>
+              </div>
+              <div>
+                  <p>{{ device.device_description }}</p>
+              </div>
+          </form>
+          {% endfor %}
+      {% else %}
+          <div>
+              <p>You don't have any devices!</p>
+              <p>Please add some here:<a href="{% url 'add_device' %}">Add device</a></p>
+          </div>
+      {% endif %}
+  </div>
+{% endblock %}
